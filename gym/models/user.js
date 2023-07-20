@@ -12,19 +12,8 @@ const DaySchema = new Schema( {
     }
 })
 
-const UserSchema = new Schema({ 
-    username: { 
-        type: String, 
-        required: [ true, "Username is required"], 
-    }, 
-    trainer: { 
-        type: [Schema.Types.ObjectId], 
-        ref: "Trainer"
-    }, 
-    grades: { 
-        type: [string], 
-    }, 
-    membership: { 
+const MembershipUserSchema = new Schema({ 
+    details: { 
         type: Schema.Types.ObjectId, 
         ref: "Membership"
     }, 
@@ -35,6 +24,40 @@ const UserSchema = new Schema({
     finishDate: { 
         type: Date, 
         required: [ true, 'Finish Date is required']
+    }, 
+})
+
+const TrainerOptionsSchema = new Schema({ 
+    trainer: { 
+        type: Schema.Types.ObjectId, 
+        ref: "Trainer"
+    }, 
+    isTrainer: { 
+        type: Boolean, 
+        default: false, 
+    }, 
+    trainerProfile: { 
+        type: Schema.Types.ObjectId, 
+        ref: "Trainer"
+    }
+})
+
+const UserSchema = new Schema({ 
+    username: { 
+        type: String, 
+        required: [ true, "Username is required"], 
+    }, 
+    password:  {
+        type: String, 
+    }, 
+    trainerOptions: { 
+        type: TrainerOptionsSchema
+    }, 
+    grades: { 
+        type: [string], 
+    }, 
+    membership: { 
+        type: MembershipUserSchema, 
     }, 
     notifications: { 
         type: [Schema.Types.ObjectId], 

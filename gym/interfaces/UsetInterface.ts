@@ -1,20 +1,36 @@
+import { MembershipInterface } from "./MembershipInterface";
+import { TrainerInterface } from "./TrainerInterface";
+import { NotificationInterface } from "./NotificationInterface";
+import { PostInterface } from "./PostInterface";
+
 export interface DayInterface { 
     date: Date, 
     kg: number, 
     height: number, 
 }; 
 
-export interface UserInterface { 
-    username: string, 
-    trainer: string, 
-    grades: string [], 
-    membership: string, 
+export interface MembershipUserInterface { 
+    details: string | MembershipInterface, 
     startDate: Date, 
     finishDate: Date, 
-    notifications: string[], 
-    posts: string[], 
+}
+
+export interface TrainerOptionsInterface { 
+    trainer: string | TrainerInterface, 
+    isTrainer: boolean, 
+    trainerProfile: string | TrainerInterface, 
+}
+
+export interface UserInterface { 
+    username: string, 
+    password?: string, 
+    trainerOptions: TrainerOptionsInterface, 
+    grades: string [], 
+    membership: MembershipUserInterface, 
+    notifications: string[] | NotificationInterface[], 
+    posts: string[] | PostInterface[], 
     calendar: DayInterface [], 
-    likedPosts: string; 
+    likedPosts: string | PostInterface[]; 
 }
 
 export const initialDay = { 
@@ -25,11 +41,16 @@ export const initialDay = {
 
 export const initialUser  = { 
     username: "", 
-    trainer: "", 
-    grades: [], 
-    membership: "", 
-    startDate: new Date(), 
-    finishDate: new Date(), 
+    trainerOptions: { 
+        trainer: "", 
+        isTrainer: false, 
+        trainerProfile: ""
+    }, 
+    membership: { 
+        details: "", 
+        startDate: new Date(), 
+        finishDate: new Date (), 
+    }, 
     notifications: [],
     posts: [], 
     calendar: [], 

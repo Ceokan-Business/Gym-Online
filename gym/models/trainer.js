@@ -21,7 +21,7 @@ const DayTrainerSchema = new Schema({ // day schmea with how many meetings he wa
     }
 })
 
-const TainerSchema = new Schema({ 
+const TrainerSchema = new Schema({ 
     username: { 
         type: String, 
         required: [ true, "Username is required"] 

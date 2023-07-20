@@ -16,7 +16,15 @@ const NotificationSchema = new Schema({
     sentDate: { 
         type: Date, 
         required: [ true, 'Sent Date is required']
-    }
+    }, 
+    creator: { 
+        type: Schema.Types.ObjectId, 
+        ref: "User"
+    }, 
+    receiver: { 
+        type: Schema.Types.ObjectId, 
+        ref: "User"
+    }, 
 }); 
 
 const Notification = models.Notification || model('Notification', NotificationSchema); 
