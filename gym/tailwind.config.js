@@ -13,6 +13,9 @@ module.exports = {
       },
       colors: {
         'dark-purple': '#421869', 
+        'light-blue': "#70D6FF", 
+        'light-orange': "#FF9770", 
+        "light-yellow": "#FFD670", 
       }
     },
   },

@@ -13,7 +13,7 @@ const UserCard = ({ user }: { user: DefaultSession["user"] | any }) => {
     <AuthButton 
         name = 'Sign Out'
         executeFunction={ signOut }
-        classes = 'sign-button text-xs' 
+        classes = 'default_button' 
     /> 
 
     <Link href = { `/users/${user?.id}`}>

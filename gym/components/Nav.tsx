@@ -3,20 +3,10 @@
 import { FaBlogger } from 'react-icons/fa'; 
 import { IconContext } from 'react-icons';
 import Link from "next/link"; 
-import { useState, useEffect } from 'react'; 
-import { signIn, useSession, getProviders } from 'next-auth/react'; 
+import { signIn, useSession } from 'next-auth/react'; 
 import Login from './Auth/Login';
 import AuthButton from './Auth/AuthButton';
-
-export interface GoogleProvider {
-    id: string;
-    name: string;
-    type: string;
-    callbackUrl: string;
-    clientId: string;
-    clientSecret: string;
-    // ... Add other Google provider-specific properties
-}
+import { CgGym } from 'react-icons/cg'; 
 
 const CustomFaBlogger: React.FC = () => { 
     return( 
@@ -28,23 +18,15 @@ const CustomFaBlogger: React.FC = () => {
 
 
 const NavBar = () => {
-    const [ providers, setProviders ] = useState <GoogleProvider[]>([]); 
     const { data: session } = useSession(); 
 
-    useEffect( () => { 
-        const setGlobalProviders = async () => { 
-            console.log ("Hello")
-            const response = await getProviders(); 
-            console.log(response); 
-            setProviders([]);
-        }; 
-
-        setGlobalProviders();
-    }, []); 
   return  (
-    <nav className = 'bg-primary-purple py-1 px-1 flex flex-row w-screen'>
-        <Link href = "/">
-            <CustomFaBlogger /> 
+    <nav className = 'bg-light-blue py-2 px-2 flex flex-row w-screen'>
+        <Link className = 'flex items-center' href = "/">
+            <div className = 'flex flex-gap-4'>
+                <div className = 'flex items-center justify-center'> <CgGym/> </div>
+                Gym Online
+            </div>
         </Link>
 
 
@@ -58,7 +40,7 @@ const NavBar = () => {
                     <AuthButton 
                         name = "Sign In"
                         executeFunction = { () => { signIn() }}
-                        classes = 'sign-button'
+                        classes = 'default_button'
                     /> 
                 </div>
             )
