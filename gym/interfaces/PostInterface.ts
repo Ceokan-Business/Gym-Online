@@ -11,6 +11,7 @@ export interface PostInterface {
 export const initialPost = { 
     _id: "", 
     title: "", 
+    description: "", 
     creator: "",
     likes: [], 
 }

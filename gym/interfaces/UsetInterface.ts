@@ -23,6 +23,7 @@ export interface TrainerOptionsInterface {
 }
 
 export interface UserInterface { 
+    _id: string, 
     username: string, 
     image: string, 
     password?: string, 
@@ -42,8 +43,10 @@ export const initialDay = {
 }
 
 export const initialUser  = { 
+    _id: "", 
     username: "", 
     image: "", 
+    grades: [], 
     trainerOptions: { 
         trainer: null, 
         isTrainer: false, 

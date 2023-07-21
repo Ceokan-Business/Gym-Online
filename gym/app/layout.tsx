@@ -1,9 +1,13 @@
 import '@styles/globals.css'; 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'; 
+
+// Session Provider
 import Provider from '@components/Provider';
 
-const inter = Inter({ subsets: ['latin'] })
+// Components on every page 
+import NavBar from '@components/Nav';
+import Footer from '@components/Footer';
 
 export const metadata: Metadata = {
   title: 'Gym Online',
@@ -19,7 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider>
-          {children}
+            <>
+              <NavBar /> 
+              { children }
+              <Footer /> 
+            </>
         </Provider>
       </body>
     </html>

@@ -1,6 +1,5 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
-import { initialUser } from "@interfaces/UsetInterface";
 
 import { connectToDB } from "../../../../utils/database"
 import User from '../../../../models/user'; 
@@ -36,6 +35,7 @@ const handler = NextAuth({
                 if(!userExists) { 
                     let userObject  = { 
                         username: "", 
+                        grades: ["User"], 
                         image: "", 
                         trainerOptions: { 
                             trainer: null, 

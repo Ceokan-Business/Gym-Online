@@ -12,4 +12,8 @@
     .default_button { 
         @apply bg-light-orange border-none rounded-xl shadow-md px-2 py-1 text-sm hover:scale-125 transition-all duration-300 hover:font-semibold hover:text-white
     }
+
+    .input_label { 
+        @apply flex flex-col my-2
+    }
 }

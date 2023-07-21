@@ -1,21 +1,10 @@
 'use client'; 
 
-import { FaBlogger } from 'react-icons/fa'; 
-import { IconContext } from 'react-icons';
 import Link from "next/link"; 
 import { signIn, useSession } from 'next-auth/react'; 
 import Login from './Auth/Login';
 import AuthButton from './Auth/AuthButton';
 import { CgGym } from 'react-icons/cg'; 
-
-const CustomFaBlogger: React.FC = () => { 
-    return( 
-        <IconContext.Provider value = {{ size: '35', color:'#491A74' }}>
-            <FaBlogger size = { 35 } /> 
-        </IconContext.Provider>
-    )
-}
-
 
 const NavBar = () => {
     const { data: session } = useSession(); 
@@ -49,4 +38,4 @@ const NavBar = () => {
 )
 }
 
-export default NavBar
+export default NavBar; 
