@@ -1,8 +1,9 @@
 import NextAuth from "next-auth/next";
-import GoogleProvider from 'next-auth/providers/google'; 
+import GoogleProvider from "next-auth/providers/google";
+import { initialUser } from "@interfaces/UsetInterface";
 
-import { connectToDB } from '@utils/database'; 
-import User from '@models/User'; 
+import { connectToDB } from "../../../../utils/database"
+import User from '../../../../models/user'; 
 
 const handler = NextAuth({ 
     providers: [ 
@@ -33,11 +34,33 @@ const handler = NextAuth({
     
                 // if not, create a new user 
                 if(!userExists) { 
-                    await User.create({ 
-                        email: profile.email, 
-                        username: profile.name.replace(" ", "").toLowerCase(), 
-                        image: profile.picture,
-                    })
+                    let userObject  = { 
+                        username: "", 
+                        image: "", 
+                        trainerOptions: { 
+                            trainer: null, 
+                            isTrainer: false, 
+                            trainerProfile: null
+                        }, 
+                        membership: { 
+                            details: null, 
+                            isFrozen: false, 
+                            startDate: new Date(), 
+                            finishDate: new Date (), 
+                        }, 
+                        notifications: [],
+                        posts: [], 
+                        calendar: [], 
+                        likedPosts: [], 
+                    }
+                    
+                    userObject.email = profile.email; 
+                    userObject.username = profile.name.replace(" ", "").toLowerCase(), 
+                    userObject.image = profile.picture,
+
+                    console.log(userObject); 
+
+                    await User.create(userObject)
                 }
     
                 return true;

@@ -17,6 +17,10 @@ const MembershipUserSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: "Membership"
     }, 
+    isFrozen: { 
+        type: Boolean, 
+        default: false, 
+    }, 
     startDate: { 
         type: Date, 
         required: [ true, 'Start Date is required']
@@ -50,11 +54,15 @@ const UserSchema = new Schema({
     password:  {
         type: String, 
     }, 
+    image: { 
+        type: String, 
+    }, 
     trainerOptions: { 
-        type: TrainerOptionsSchema
+        type: TrainerOptionsSchema,
     }, 
     grades: { 
-        type: [string], 
+        type: [String], 
+        required: [ true, 'Grades are required']
     }, 
     membership: { 
         type: MembershipUserSchema, 

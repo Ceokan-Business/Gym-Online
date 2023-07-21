@@ -10,19 +10,21 @@ export interface DayInterface {
 }; 
 
 export interface MembershipUserInterface { 
-    details: string | MembershipInterface, 
+    details: string | MembershipInterface | null,
+    isFrozen: Boolean, 
     startDate: Date, 
     finishDate: Date, 
 }
 
 export interface TrainerOptionsInterface { 
-    trainer: string | TrainerInterface, 
+    trainer: string | TrainerInterface | null, 
     isTrainer: boolean, 
-    trainerProfile: string | TrainerInterface, 
+    trainerProfile: string | TrainerInterface | null,
 }
 
 export interface UserInterface { 
     username: string, 
+    image: string, 
     password?: string, 
     trainerOptions: TrainerOptionsInterface, 
     grades: string [], 
@@ -41,13 +43,15 @@ export const initialDay = {
 
 export const initialUser  = { 
     username: "", 
+    image: "", 
     trainerOptions: { 
-        trainer: "", 
+        trainer: null, 
         isTrainer: false, 
-        trainerProfile: ""
+        trainerProfile: null,
     }, 
     membership: { 
-        details: "", 
+        details: null,  
+        isFrozen: false, 
         startDate: new Date(), 
         finishDate: new Date (), 
     }, 
