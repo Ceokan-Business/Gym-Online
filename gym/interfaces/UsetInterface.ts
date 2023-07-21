@@ -12,8 +12,8 @@ export interface DayInterface {
 export interface MembershipUserInterface { 
     details: string | MembershipInterface | null,
     isFrozen: Boolean, 
-    startDate: Date, 
-    finishDate: Date, 
+    startDate: Date | null, 
+    finishDate: Date | null, 
 }
 
 export interface TrainerOptionsInterface { 
@@ -55,8 +55,8 @@ export const initialUser  = {
     membership: { 
         details: null,  
         isFrozen: false, 
-        startDate: new Date(), 
-        finishDate: new Date (), 
+        startDate: null, 
+        finishDate: null, 
     }, 
     notifications: [],
     posts: [], 

@@ -18,6 +18,10 @@ const MembershipForm = ({ membership, setMembership, submitting, type, handleSub
             { type === 'Creeaza' && 
                 <h1> { type } inca un abonament pentru cei ce lucreaza la sala ta de fitness. </h1>
             }
+
+            { type === "Editeaza" && 
+                <h1> { type } editeaza abonamentul creeat anterior. </h1>
+            }
         </header>
 
         <form className = 'form' onSubmit = { handleSubmit }>
