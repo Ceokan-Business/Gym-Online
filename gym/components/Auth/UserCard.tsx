@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react'
+'use client';
+
+import React from 'react'
 import { DefaultSession } from 'next-auth'; 
 import Link from 'next/link';
 import Image from 'next/image';
 import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 import AuthButton from './AuthButton';
 
 const UserCard = ({ user }: { user: DefaultSession["user"] | any }) => {
-  useEffect( () => { console.log(user)}, [])
+  const router = useRouter(); 
+
   return (
     <div className = 'flex py-1'>
     <AuthButton 
         name = 'Sign Out'
-        executeFunction={ signOut }
+        executeFunction={  () => { router.push("/"); signOut();} }
         classes = 'default_button' 
     /> 
 

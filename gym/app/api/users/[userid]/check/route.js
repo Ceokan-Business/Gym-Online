@@ -1,13 +1,13 @@
 // route to check the grades of an user
 
 import { connectToDB } from "@utils/database"; 
+import { ObjectId } from "mongodb";
 import User from "@models/user"; 
 
 export const GET = async(req, { params }) => { 
     try { 
         await connectToDB(); 
-
-        const user = await User.findOne({ _id: params.userid}, { grades: 1 }); // populate mebership and trainerOptions
+        const user = await User.findOne({ _id: new ObjectId(params.userid) }, { grades: 1 }); // populate mebership and trainerOptions
         
         if(!user) { 
             return new Response("Cannot find the user", { status: 404 }); 

@@ -51,6 +51,7 @@ const Feed = () => {
 
             setPosts(postsResponse); 
             setLoaded(true); 
+            console.log({ session });
         }; 
 
         getPostsData(); 

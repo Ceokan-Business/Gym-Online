@@ -18,3 +18,5 @@ export const MONTHS = [ //lunile anului - folosite la profile
 	"November",
 	"December",
 ];
+
+export const EMAIL_PLACEHOLDER = 'exmaple@exmaple.com'; 

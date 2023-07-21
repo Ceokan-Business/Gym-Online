@@ -78,6 +78,10 @@ const MemberShipsPage = () => {
             </div>
         }
 
+        { isAdmin && 
+                    <Link className = 'default_button' href = 'create-membership'> Creeaza abonament </Link>
+        }
+
         { loaded && memberships.length > 0 && 
             <MembershipList deleteMembership = { deleteMembership } isAdmin = { isAdmin } memberships = { memberships } /> 
         }

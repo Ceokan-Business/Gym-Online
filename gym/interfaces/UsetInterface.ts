@@ -25,6 +25,7 @@ export interface TrainerOptionsInterface {
 export interface UserInterface { 
     _id: string, 
     username: string, 
+    email: string, 
     image: string, 
     password?: string, 
     trainerOptions: TrainerOptionsInterface, 
@@ -46,6 +47,7 @@ export const initialUser  = {
     _id: "", 
     username: "", 
     image: "", 
+    email: "", 
     grades: [], 
     trainerOptions: { 
         trainer: null, 

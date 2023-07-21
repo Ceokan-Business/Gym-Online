@@ -2,11 +2,16 @@
 
 import { useState, useEffect } from 'react'; 
 import { UserInterface, initialUser } from '@interfaces/UsetInterface';
-import { usePathname } from 'next/navigation'; 
+import { useSession } from 'next-auth/react';
+import { usePathname, useRouter } from 'next/navigation'; 
 import Profile from '@components/Profile/Profile';
 
 const ProfilePage = () => {
+    const { data: session } = useSession(); 
+    const router = useRouter(); 
     const pathName = usePathname(); 
+
+    const [ loaded, setLoaded ] = useState <boolean> (false); 
 
     function extractUserId () { 
         console.log(pathName.split("/")[2])
@@ -23,16 +28,25 @@ const ProfilePage = () => {
 
             console.log({ userResponse }); 
             setUser(userResponse); 
+            setLoaded(true); 
         }; 
 
         getUserData(); 
-    }, [])
+    }, []); 
 
   return (
-    <Profile
-        user = { user }
-        setUser = { setUser }
-    /> 
+    <>
+        { !loaded && 
+            <p>Loading...</p>
+        }
+
+        { loaded && 
+            <Profile
+                user = { user }
+                setUser = { setUser }
+            /> 
+        }
+    </>
   )
 }
 

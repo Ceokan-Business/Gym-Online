@@ -23,11 +23,9 @@ const MembershipUserSchema = new Schema({
     }, 
     startDate: { 
         type: Date, 
-        required: [ true, 'Start Date is required']
     }, 
     finishDate: { 
         type: Date, 
-        required: [ true, 'Finish Date is required']
     }, 
 })
 
@@ -52,6 +50,9 @@ const UserSchema = new Schema({
         required: [ true, "Username is required"], 
     }, 
     password:  {
+        type: String, 
+    }, 
+    email: { 
         type: String, 
     }, 
     image: { 

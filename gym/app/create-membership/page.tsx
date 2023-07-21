@@ -26,7 +26,7 @@ const CreateMembership = () => {
             }); 
 
             if(response.ok) { 
-                router.push("/"); 
+                router.push("/memberships"); 
                 return; 
             }
         } catch(err) { 

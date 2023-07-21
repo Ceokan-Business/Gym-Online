@@ -1,8 +1,8 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
-import { connectToDB } from "../../../../utils/database"
-import User from '../../../../models/user'; 
+import { connectToDB } from "@utils/database"; 
+import User from "@models/user"
 
 const handler = NextAuth({ 
     providers: [ 
@@ -14,9 +14,12 @@ const handler = NextAuth({
 
     callbacks: { 
         async session ({ session }) { 
+            console.log({ user: session.user })
             const sessionUser = await User.findOne({ 
-                email: session.user.email
+                username: session.user.name, 
             }); 
+
+            console.log ({ sessionUser }); 
     
             session.user.id = sessionUser._id.toString(); 
             return session; 
@@ -25,16 +28,17 @@ const handler = NextAuth({
         async signIn({ profile }) { 
             try { 
                 await connectToDB(); 
-    
+
                 //check if a user already exists
-                const userExists = await User.findOne({ 
-                    email: profile.email, 
-                }) ; 
+                const userExists = await User.findOne({ username: profile.name }) || null;
+
+                console.log({ userExists }); 
     
                 // if not, create a new user 
                 if(!userExists) { 
                     let userObject  = { 
                         username: "", 
+                        email: "", 
                         grades: ["User"], 
                         image: "", 
                         trainerOptions: { 
@@ -45,8 +49,8 @@ const handler = NextAuth({
                         membership: { 
                             details: null, 
                             isFrozen: false, 
-                            startDate: new Date(), 
-                            finishDate: new Date (), 
+                            startDate: new Date (), 
+                            finishDate: new Date () , 
                         }, 
                         notifications: [],
                         posts: [], 
@@ -55,7 +59,7 @@ const handler = NextAuth({
                     }
                     
                     userObject.email = profile.email; 
-                    userObject.username = profile.name.replace(" ", "").toLowerCase(), 
+                    userObject.username = profile.name, 
                     userObject.image = profile.picture,
 
                     console.log(userObject); 
