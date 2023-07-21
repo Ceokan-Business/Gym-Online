@@ -13,7 +13,20 @@
         @apply bg-light-orange border-none rounded-xl shadow-md px-2 py-1 text-sm hover:scale-125 transition-all duration-300 hover:font-semibold hover:text-white
     }
 
+    .submit_button { 
+        @apply bg-light-yellow border-none rounded-xl shadow-md px-2 py-1 text-sm hover:scale-125 transition-all duration-300 hover:font-semibold
+    }
+
     .input_label { 
         @apply flex flex-col my-2
     }
+
+    .form_input { 
+        @apply rounded-xl mx-4 px-4 py-1 outline-none font-satoshi
+    }
+
+    .form { 
+        @apply flex flex-col bg-light-blue shadow-md ml-10 mr-40 my-10 p-5 rounded-2xl
+    }
+
 }

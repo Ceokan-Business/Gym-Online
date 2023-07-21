@@ -17,7 +17,7 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
     <>
         {/* Daca se afla pe profilul lor si sunt responsabili sau patroni pot creea postari */}
         { session?.user?.id === user._id  && (user.grades.includes(GRADES[4]) || user.grades.includes(GRADES[4])) &&
-            <Link href = 'create-post' className = 'default_button'> Create Post </Link>
+            <Link href = '/create-post' className = 'default_button'> Create Post </Link>
         }
     </>
   )

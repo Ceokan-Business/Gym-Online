@@ -60,7 +60,7 @@ const InputElement = ({ labelTitle, placeholder, required, value, executeChange,
     )
 }
 
-const TextAreaInput =({labelTitle, placeholder, required, value, executeChange }: TextAreaProps) => { 
+const TextAreaElement =({labelTitle, placeholder, required, value, executeChange }: TextAreaProps) => { 
     return ( 
       <>
         <label className = 'input_label'>
@@ -100,4 +100,4 @@ const EditInputElement = ({ labelTitle, placeholder, required, value, executeCha
     )
 }
 
-export { TextAreaInput, InputElement, EditInputElement}
+export { TextAreaElement, InputElement, EditInputElement}

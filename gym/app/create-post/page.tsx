@@ -14,6 +14,7 @@ const CreatePost = () => {
 
   return (
     <PostForm 
+        type = "Creeaza"
         submitting = { submitting } 
         post = { post }
         setPost = { setPost }
