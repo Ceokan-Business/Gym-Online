@@ -2,8 +2,8 @@ import { MdOutlineDownloadDone } from 'react-icons/md';
 
 interface DefaultProps { 
     labelTitle: string
-    placeholder: string, 
-    value: string, 
+    placeholder?: string, 
+    value: string | number, 
     required: boolean, 
 }
 
@@ -47,12 +47,12 @@ const InputElement = ({ labelTitle, placeholder, required, value, executeChange,
 
             { (executeFunction == undefined || executeFunction == null) && 
                 <input 
-                type="text" 
-                required = { required }
-                placeholder = { placeholder }
-                className='form_input'
-                value = { value }
-                onChange = { (e) => { executeChange(e)}}
+                  type="text" 
+                  required = { required }
+                  placeholder = { placeholder }
+                  className='form_input'
+                  value = { value }
+                  onChange = { (e) => { executeChange(e)}}
                 /> 
             }
             </label>
@@ -79,7 +79,7 @@ const TextAreaElement =({labelTitle, placeholder, required, value, executeChange
 
 const EditInputElement = ({ labelTitle, placeholder, required, value, executeChange, executeEdit }: EditProps) => { 
     return ( 
-      <div  >
+      <div>
         <label className = "input_label">
           <span className='mx-4 text-base my-0.5 font-medium font-satoshi'> { labelTitle } </span>
           <div className = 'flex mr-2'>
@@ -100,4 +100,24 @@ const EditInputElement = ({ labelTitle, placeholder, required, value, executeCha
     )
 }
 
-export { TextAreaElement, InputElement, EditInputElement}
+const NumberInputElement =({ labelTitle, placeholder, required, value, executeChange }: InputProps) => { 
+  return ( 
+    <>
+    <label className="input_label">
+        <span className='mx-4 text-base my-0.5 font-medium font-satoshi'> { labelTitle } </span>
+        <input 
+          type="number" 
+          required = { required }
+          placeholder = { placeholder }
+          className='form_input'
+          value = { value }
+          onChange = { (e) => { executeChange(e)}}
+          min =  { 1 }
+          step = { 1 }
+        /> 
+    </label>
+</>
+  )
+}
+
+export { TextAreaElement, InputElement, EditInputElement, NumberInputElement}
