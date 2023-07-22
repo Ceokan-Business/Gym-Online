@@ -44,6 +44,7 @@ const ProfilePage = () => {
             <Profile
                 user = { user }
                 setUser = { setUser }
+                membership = { user.membership.details }
             /> 
         }
     </>

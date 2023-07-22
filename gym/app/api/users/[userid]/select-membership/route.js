@@ -5,28 +5,37 @@ import { GRADES, EMAIL_PLACEHOLDER } from '@global/constants';
 export const PATCH = async (req, { params }) => { 
     try { 
         await connectToDB (); 
-        const { userid, membershipid } = await req.json(); 
+        const { userid, membershipid, frozen } = await req.json(); 
 
         console.log({ membershipid, userid }); 
-        // Getting the dates
-        const currentDate = new Date (); 
-
-        let futureDate = new Date(currentDate); 
-        futureDate.setDate(currentDate.getDate() + 30); 
-
-        // Find the user for the membership
         let user = await User.findOne({ _id: userid }); 
 
-        user.membership.details = membershipid; 
+        if(!frozen) { 
+            if(user.grades.includes(GRADES[1])) { 
+                const currentDate = new Date (); 
 
-        // Member grade
-        if(!user.grades.includes(GRADES[1])) { 
-            user.grades.push(GRADES[1]); 
+                let futureDate = new Date(currentDate); 
+                futureDate.setDate(currentDate.getDate() + 30); 
+        
+                // Find the user for the membership
+                user.membership.details = membershipid; 
+        
+                // Member grade
+                if(!user.grades.includes(GRADES[1])) { 
+                    user.grades.push(GRADES[1]); 
+                }
+        
+                // Getting the dates
+                // Dates of the membership - 30 days 
+                user.membership.startDate = currentDate; 
+                user.membership.finishDate = futureDate; 
+            } else { 
+                console.log("The user alredy has a membership."); 
+            }
+        } else { 
+            console.log("error from here"); 
+            user.membership.isFrozen = true; 
         }
-
-        // Dates of the membership - 30 days 
-        user.membership.startDate = currentDate; 
-        user.membership.finishDate = futureDate; 
 
         user.email = EMAIL_PLACEHOLDER; 
 

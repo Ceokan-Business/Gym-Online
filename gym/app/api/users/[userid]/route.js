@@ -5,7 +5,7 @@ export const GET = async(req, { params }) => {
     try { 
         await connectToDB(); 
 
-        const user = await User.findOne({ _id: params.userid}, { calendar: 0 }); // populate mebership and trainerOptions
+        const user = await User.findOne({ _id: params.userid}, { calendar: 0 }).populate('membership.details') // populate mebership and trainerOptions
         
         if(!user) { 
             return new Response("Cannot find the user", { status: 404 }); 

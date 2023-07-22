@@ -7,6 +7,7 @@ import { MembershipInterface } from '@interfaces/MembershipInterface';
 import { GRADES } from '@global/constants';
 import { verifyUserStatus } from '@utils/verifyUserStatus';
 import { useRouter } from 'next/navigation';
+import StopMembershipForm from '@components/Membership/StopMembershipForm';
 
 import Link from 'next/link';
 
@@ -16,14 +17,14 @@ interface Props {
 }
 
 interface OptionsProps { 
-  updateMembership: (userid: string, membershipid: string) => void,
+  updateMembership: (userid: string, membershipid: string, frozen: boolean) => void,
   userid: string, 
   cancelUpdate: () => void
 }
 
 interface Item { 
   membership: MembershipInterface,
-  updateMembership: (userid: string, membershipid: string) => void,
+  updateMembership: (userid: string, membershipid: string, frozen: boolean) => void,
   userid: string
 }
 
@@ -33,7 +34,7 @@ const MembershipItem = ({ membership, updateMembership, userid }: Item) => {
       <p> { membership.title } </p>
       <p> { membership.price } lei</p>
       <button 
-        onClick = { () => { updateMembership(userid, membership._id.toString())}}
+        onClick = { () => { updateMembership(userid, membership._id.toString(), false)}}
         className = 'default_button ml-4 mr-2'> Selecteaza </button>
     </div>
   )
@@ -86,6 +87,8 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
     const [ showMembershipOptions, setShowMembershipOptions ] = useState <boolean> (false); 
     const [ isAdmin, setIsAdmin ] = useState <boolean> (false); 
 
+    const [ showStopMembershipForm, setShowStopMembershipForm ] = useState <boolean>  (false); 
+
     useEffect( () => { 
       async function check () { 
         const checkAdmin = await verifyUserStatus(session?.user?.id); 
@@ -95,9 +98,10 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
       check(); 
     }, []); 
 
-    const updateMembership = async (userid: string, membershipid: string) => {  
-      const payload = { userid, membershipid }
-      console.log(payload)
+    const updateMembership = async (userid: string, membershipid: string, frozen: boolean) => {  
+      const payload = { userid, membershipid, frozen }
+      console.log(payload); 
+
       try { 
         const response = await fetch(`/api/users/${userid}/select-membership`, { 
           method: "PATCH", 
@@ -109,7 +113,7 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
         }); 
 
         if(response.ok) { 
-          router.push(`/user/${userid}`); 
+          router.push(`/users/${userid}`); 
           return; 
         }
       } catch(err) { 
@@ -130,7 +134,17 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
 
         {/* Daca utilizatorul este responsabil sau patron ii poate seta userului gradul de membru*/}
         {isAdmin && 
-          <button className = 'default_button' onClick = { () => { setShowMembershipOptions(true) }}> Seteaza Abonament </button>
+          <>
+           { !user.grades.includes(GRADES[1])  &&
+              <button className = 'default_button' onClick = { () => { if(!user.grades.includes(GRADES[1])) { setShowMembershipOptions(true) }  }}> Seteaza Abonament </button>
+           }
+          { user.grades.includes(GRADES[1]) &&
+            <>
+              <button className = 'default_button' onClick = { () => { updateMembership(user._id.toString(), "", true)}}> Ingheata abonament </button>
+              <button className = 'default_button' onClick = { () => { setShowStopMembershipForm(true) }}>  Anuleaza abonament </button>
+            </>
+          }
+          </>
         }
 
         { showMembershipOptions && 
@@ -138,6 +152,10 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
             userid =  { user._id.toString() } 
             updateMembership = { updateMembership }
             cancelUpdate = { cancelUpdate } /> 
+        }
+
+        { showStopMembershipForm && 
+          <StopMembershipForm userid = { user._id.toString() } /> 
         }
     </>
   )

@@ -10,7 +10,7 @@ export interface DayInterface {
 }; 
 
 export interface MembershipUserInterface { 
-    details: string | MembershipInterface | null,
+    details:  MembershipInterface | null | string,
     isFrozen: Boolean, 
     startDate: Date | null, 
     finishDate: Date | null, 
