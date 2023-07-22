@@ -11,7 +11,7 @@ export const PATCH = async (req, { params }) => {
         let user = await User.findOne({ _id: userid }); 
 
         if(!frozen) { 
-            if(user.grades.includes(GRADES[1])) { 
+            if(!user.grades.includes(GRADES[1])) { 
                 const currentDate = new Date (); 
 
                 let futureDate = new Date(currentDate); 

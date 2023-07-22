@@ -7,6 +7,7 @@ export interface NotificationInterface {
     sentDate: Date, 
     creator: string | UserInterface, 
     receiver: string | UserInterface, 
+    date: Date | null, 
 }
 
 export const initialNotification = { 
@@ -16,4 +17,5 @@ export const initialNotification = {
     sentDate: new Date(),
     creator: "", 
     receiver: "", 
+    date: null, 
 }

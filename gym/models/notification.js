@@ -25,6 +25,9 @@ const NotificationSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: "User"
     }, 
+    date: { 
+        type: Date, 
+    }
 }); 
 
 const Notification = models.Notification || model('Notification', NotificationSchema); 

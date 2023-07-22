@@ -20,3 +20,5 @@ export const MONTHS = [ //lunile anului - folosite la profile
 ];
 
 export const EMAIL_PLACEHOLDER = 'exmaple@exmaple.com'; 
+
+export const TITLE_CANCEL_MEMBERSHIP = 'Ne pare rau'; // atunci cand un membru este data afara, ii apara o notificare pe profil. Acesta este titlul notificarii 
