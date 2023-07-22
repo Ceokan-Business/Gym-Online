@@ -1,5 +1,6 @@
 Edit for posts 
 Profile posts 
+Notifications CRUD
 
 Questions: 
 Iti poti anula singur abonamentul sau doar nu mai vii? 

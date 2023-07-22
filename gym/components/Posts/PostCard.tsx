@@ -18,7 +18,7 @@ const PostCard = ({ post, adminGrade, deletePost, index }: Props) => {
 
         { adminGrade && 
             <div className = 'flex gap-x-4'>
-                <Link href = '/edit-post' className='default_button'> Editeaza </Link>
+                <Link href = { `/posts/${post._id.toString()}/edit-post`} className='default_button'> Editeaza </Link>
                 <button
                     onClick = { () => deletePost(post._id.toString(), index)}
                     className = 'default_button'> Sterge </button>
