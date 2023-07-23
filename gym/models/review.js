@@ -5,11 +5,11 @@ const ReviewSchema = new Schema({
         type: String, 
         requried: [ true, "text is required"], 
     }, 
-    cretor: { 
-        type: [ Schema.Types.ObjectId], 
+    creator: { 
+        type: Schema.Types.ObjectId, 
         ref: "User"
     }
 }); 
 
-const Review = models.Review | model("Review", ReviewSchema); 
+const Review = models.Review || model("Review", ReviewSchema); 
 export default Review; 
