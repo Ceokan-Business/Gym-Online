@@ -27,8 +27,10 @@ const handler = NextAuth({
     
         async signIn({ profile }) { 
             try { 
+                console.log("HI"); 
                 await connectToDB(); 
 
+                console.log({ profile })
                 //check if a user already exists
                 const userExists = await User.findOne({ username: profile.name }) || null;
 
@@ -36,6 +38,7 @@ const handler = NextAuth({
     
                 // if not, create a new user 
                 if(!userExists) { 
+                    console.log("NEW"); 
                     let userObject  = { 
                         username: "", 
                         email: "", 
@@ -51,6 +54,7 @@ const handler = NextAuth({
                             isFrozen: false, 
                             startDate: new Date (), 
                             finishDate: new Date () , 
+                            doneSessions: 0, 
                         }, 
                         notifications: [],
                         posts: [], 
@@ -62,13 +66,14 @@ const handler = NextAuth({
                     userObject.username = profile.name, 
                     userObject.image = profile.picture,
 
-                    console.log(userObject); 
+                    console.log({ userObject }); 
 
-                    await User.create(userObject)
+                    await User.create(userObject); 
                 }
     
                 return true;
             } catch (error) { 
+                console.log("FROM HERE");
                 console.log(error); 
                 return false;
             }

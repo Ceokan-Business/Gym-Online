@@ -27,6 +27,10 @@ const MembershipUserSchema = new Schema({
     finishDate: { 
         type: Date, 
     }, 
+    doneSessions: { 
+        type: Schema.Types.Number, 
+        default: 0, 
+    }
 })
 
 const TrainerOptionsSchema = new Schema({ 

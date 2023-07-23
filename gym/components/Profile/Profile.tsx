@@ -6,7 +6,7 @@ import { GRADES } from '@global/constants';
 
 import { MembershipInterface } from '@interfaces/MembershipInterface';
 import { PostInterface } from '@interfaces/PostInterface';
-import { PopulatedUserInterface } from '@interfaces/UsetInterface';
+import { PopulatedUserInterface} from '@interfaces/UsetInterface';
 
 interface Props { 
     user: PopulatedUserInterface, 
@@ -84,6 +84,8 @@ const Profile = ({ user, setUser, membership}: Props ) => {
             <h2> Detalii abonament: </h2>
             <p> { membership.title } </p>
             <p> { membership.price } </p>
+
+            <p> { user.membership.doneSessions } / { membership.availableSessions } </p>
           </article>
         }
 

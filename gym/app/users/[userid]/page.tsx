@@ -1,7 +1,7 @@
 'use client'; 
 
 import { useState, useEffect } from 'react'; 
-import { PopulatedUserInterface, initialUser } from '@interfaces/UsetInterface';
+import { PopulatedUserInterface, populatedInitialUser } from '@interfaces/UsetInterface';
 import { usePathname, useRouter } from 'next/navigation'; 
 import Profile from '@components/Profile/Profile';
 
@@ -18,7 +18,7 @@ const ProfilePage = () => {
     }
 
     const ID = extractUserId(); 
-    const [ user, setUser ] = useState <PopulatedUserInterface>(initialUser); 
+    const [ user, setUser ] = useState <PopulatedUserInterface>(populatedInitialUser); 
 
     useEffect( () => { 
         const getUserData = async () => { 

@@ -14,7 +14,7 @@ import { PopulatedUserInterface } from '@interfaces/UsetInterface';
 import Link from 'next/link';
 
 interface Props { 
-    user: UserInterface, 
+    user: PopulatedUserInterface, 
     setUser: React.Dispatch<React.SetStateAction<PopulatedUserInterface>> 
 }
 
@@ -112,7 +112,7 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
           headers: { 
             "Content-Type": "application/json"
           }
-        }); 
+        });
 
         if(response.ok) { 
           router.refresh()
@@ -121,6 +121,32 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
       } catch(err) { 
         console.log(err); 
       }
+    }
+
+    const addGymSession = async () => { 
+      try { 
+        const response = await fetch(`/api/users/${user._id}`, { 
+          method: "PATCH", 
+          mode: "cors", 
+          body: JSON.stringify({ action: "ADD_SESSION", creatorid: session?.user?.id, details: user.membership.details }), 
+          headers: { 
+            "Content-Type": "application/json"
+          }
+        }); 
+
+        let updateUser = user; 
+        updateUser.membership.doneSessions = updateUser.membership.doneSessions + 1; 
+        console.log({ updateUser });
+        setUser(updateUser);  
+
+        if(response.ok) { 
+          router.refresh(); 
+          return; 
+        }
+
+      } catch(err) { 
+        console.log(err); 
+      } 
     }
 
     const cancelUpdate = () => { 
@@ -144,6 +170,7 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
             <>
               <button className = 'default_button' onClick = { () => { updateMembership(user._id.toString(), "", true)}}> Ingheata abonament </button>
               <button className = 'default_button' onClick = { () => { setShowStopMembershipForm(true) }}>  Anuleaza abonament </button>
+              <button className = 'default_button' onClick = { addGymSession }> Adauga sedinta </button>
             </>
           }
           </>

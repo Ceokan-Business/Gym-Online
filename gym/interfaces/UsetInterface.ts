@@ -14,6 +14,7 @@ export interface MembershipUserInterface {
     isFrozen: Boolean, 
     startDate: Date | null, 
     finishDate: Date | null, 
+    doneSessions: number
 }
 
 export interface TrainerOptionsInterface { 
@@ -59,6 +60,7 @@ export const initialUser  = {
         isFrozen: false, 
         startDate: null, 
         finishDate: null, 
+        doneSessions: 0, 
     }, 
     notifications: [],
     posts: [], 
@@ -74,6 +76,7 @@ export interface PopulatedMembershipInterface {
     isFrozen: Boolean, 
     startDate: Date | null, 
     finishDate: Date | null, 
+    doneSessions: number
 }
 
 export interface PopulatedOptionsInterface { 
@@ -95,4 +98,35 @@ export interface PopulatedUserInterface {
     posts: PostInterface[], 
     calendar: DayInterface [], 
     likedPosts: PostInterface[] | string; 
+}
+
+export const populatedInitialUser  = { 
+    _id: "", 
+    username: "", 
+    image: "", 
+    email: "", 
+    grades: [], 
+    trainerOptions: { 
+        trainer: null, 
+        isTrainer: false, 
+        trainerProfile: null,
+    }, 
+    membership: { 
+        details: { 
+            _id: "", 
+            title: "", 
+            price: 0, 
+            startDate: null, 
+            finishDate: null, 
+            availableSessions: 0, 
+        },  
+        isFrozen: false, 
+        startDate: null, 
+        finishDate: null, 
+        doneSessions: 0, 
+    }, 
+    notifications: [],
+    posts: [], 
+    calendar: [], 
+    likedPosts: [], 
 }
