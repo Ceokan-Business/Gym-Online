@@ -1,6 +1,7 @@
 import { UserInterface } from "./UsetInterface"
 
 export interface NotificationInterface { 
+    _id: string, 
     title: string, 
     text: string, 
     seen: boolean, 
@@ -11,6 +12,7 @@ export interface NotificationInterface {
 }
 
 export const initialNotification = { 
+    _id: "", 
     title: "", 
     text: "", 
     seen: false, 
