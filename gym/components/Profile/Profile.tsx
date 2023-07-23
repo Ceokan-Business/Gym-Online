@@ -1,7 +1,3 @@
-'use client'; 
-
-import { useSession } from 'next-auth/react';
-
 import PostCard from '@components/Posts/PostCard';
 import GradesList from './GradesList';
 import DeveloperProfile from './DeveloperProfile';
@@ -25,29 +21,35 @@ interface PostProps {
 
 const PostsInProfile = ({ posts, deletePost }: PostProps) => { 
   return ( 
-    <section>
-      { posts.map( (post, index) => { 
-        return ( 
-          <PostCard 
-            post = { post }
-            adminGrade = { true }
-            index = { index }
-            deletePost = { deletePost }
-          /> 
-        )
-      })}
+    <section className = 'my-8 mx-4'>
+      { posts.length > 0 && 
+        <>
+          <p className = 'text-xl my-2 font-semibold'> Postari: </p>
+          { posts.map( (post, index) => { 
+            return ( 
+              <PostCard 
+                post = { post }
+                adminGrade = { true }
+                index = { index }
+                deletePost = { deletePost }
+              /> 
+            )
+          })} 
+        </>
+      }
+      { posts.length  == 0 &&
+          <p className = 'text-xl my-2 font-semibold' > Nu sunt postari de vazut.</p>
+      }
     </section>
   )
 }
 
 const Profile = ({ user, setUser, membership}: Props ) => {
-  const { data: session } = useSession(); 
-
   const deletePost = async(postid: string, index: number) => { 
     const response = await fetch(`/api/posts/${postid}`, { 
         method: "DELETE", 
         mode: "cors", 
-        body: JSON.stringify({ userid: session?.user?.id, index}), 
+        body: JSON.stringify({ userid: user._id, index}), 
         headers: { 
             "Content-Type": "application/json"
         }

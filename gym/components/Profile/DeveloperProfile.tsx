@@ -115,7 +115,7 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
         }); 
 
         if(response.ok) { 
-          router.push(`/users/${userid}`); 
+          router.refresh()
           return; 
         }
       } catch(err) { 

@@ -39,6 +39,12 @@ export const PATCH = async (req, { params }) => {
         user.grades = grades; 
 
         user.membership = { details: null, startDate: null, finishDate: null, isFrozen: false }; // elimina abonamentul 
+
+        //adauga notificare in profil 
+        let notes = user.notifications; 
+        notes.push(note._id); 
+        user.notifications = notes; 
+        
         await user.save (); // salveaza userul in baza de date; 
 
         return new Response("Succesfully canceled", { status: 200 }); 
