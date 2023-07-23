@@ -24,3 +24,40 @@ export const GET = async (req,  { params }) => {
         return new Response(err, { status: 500 }); 
     }
 }
+
+export const DELETE = async(req, { params }) => { 
+    try  {
+        await connectToDB(); 
+
+        let user = await User.findOne( { _id: params.userid }); 
+        
+        for(let i = 0; i < user.notifications.length; i++) { 
+            await Notification.deleteOne({ _id: user.notifications[i]});
+        }
+
+        user.notifications = []; 
+
+        console.log({ user }); 
+        return new Response("All notifications deleted", { status: 200 }); 
+    } catch(err) { 
+        console.log(err); 
+        return new Response(err,  { status: 500 }); 
+    }
+}
+
+export const PATCH = async (req, { params }) => { //mark all notifications as read
+    try {   
+        await connectToDB(); 
+
+        const user = await User.findOne( { _id: params.userid }); 
+
+        for(let i = 0; i < user.notifications.length; i++) { 
+            await Notification.updateOne({ _id: user.notifications[i]}, { $set: { seen: true }}); 
+        }
+
+        return new Response("All notifications marked as read", { status: 200 }); 
+    } catch(err) { 
+        console.log(err); 
+        return new Response(err, { status: 500 }); 
+    }
+}

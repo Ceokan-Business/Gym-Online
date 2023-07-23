@@ -2,10 +2,13 @@
 
 import { NotificationInterface } from "@interfaces/NotificationInterface"
 import { useState } from 'react'; 
+import { useSession } from "next-auth/react";
 
 interface Props { 
     notifications: NotificationInterface [], 
-    markAsRead: (index: number) => void
+    markAsRead: (index: number) => void, 
+    deleteNotifications: () => void, 
+    markAllAsRead: () => void, 
 }
 
 interface ItemProps { 
@@ -69,9 +72,9 @@ const NotificationItem = ({ notification, markAsRead, index }: ItemProps) => {
     )
 }
 
-const NotificationDropDown = ({ notifications, markAsRead }: Props ) => {
+const NotificationDropDown = ({ notifications, markAsRead, deleteNotifications, markAllAsRead}: Props ) => {
   return (
-    <section  className = 'absolute top-16 bg-light-orange'>
+    <section className = 'absolute top-16 bg-light-orange'>
         { notifications.length == 0 ? 
             ( 
                 <p> Nu exista notificari. </p>
@@ -82,7 +85,10 @@ const NotificationDropDown = ({ notifications, markAsRead }: Props ) => {
                         return ( 
                             <NotificationItem notification = { notification } markAsRead = { markAsRead } index = { index } /> 
                         )
-                    })}
+                    })} 
+
+                    <button onClick  = { deleteNotifications } className = 'bg-light-blue text-center w-full hover:font-semibold transition-all duration-300'> Sterge toate notificarile </button>
+                    <button onClick =  { markAllAsRead } className = 'bg-light-blue text-center w-full hover:font-semibold transition-all duration-300' > Marcheaza drept citit </button>
                 </>
             )
         }

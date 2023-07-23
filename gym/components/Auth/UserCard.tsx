@@ -37,6 +37,8 @@ const UserCard = ({ user }: { user: DefaultSession["user"] | any }) => {
     getNotificationsData(); 
   }, [session]); 
 
+
+  //Notifications Methods
   const markAsRead = (index: number) => { 
     let notificationsUpdate = notifications; 
 
@@ -49,7 +51,59 @@ const UserCard = ({ user }: { user: DefaultSession["user"] | any }) => {
     setUnreadNotificationsCount(x => x == 0 ? 0 : x - 1); 
 
     setNotifications(notificationsUpdate); 
+  }; 
+
+  const deleteNotifications = async () => { 
+    try { 
+        const response = await fetch(`/api/users/${session?.user?.id}/notifications`, { 
+            method: "DELETE", 
+            mode: "cors", 
+            headers: { 
+                "Content-Type": "application/json"
+            }
+        }); 
+
+        //Frontend reset
+        setNotifications([]); 
+        setUnreadNotificationsCount(0); 
+
+        if(response.ok) { 
+            return; 
+        }
+    } catch(err) { 
+
+    }
+}
+
+const markAllAsRead = async () => { 
+  try {
+    const response = await fetch(`/api/users/${session?.user?.id}/notifications`, { 
+      method: "PATCH", 
+      mode: "cors", 
+      headers: { 
+        "Content-Type": "application/json-"
+      }
+    }); 
+
+    //Frontend reset
+
+    setUnreadNotificationsCount(0); //set counter of unread
+
+    let notificationsUpdate = notifications; 
+    for(let i = 0; i < notificationsUpdate.length; i++) { 
+      notificationsUpdate[i].seen = true; // make them read in frontend
+    }
+ 
+    setNotifications(notificationsUpdate); 
+    
+    if(response.ok) { 
+      return; 
+    }
+
+  } catch(err) { 
+    console.log(err); 
   }
+}
 
   return (
     <div className = 'flex py-1 gap-x-8'>
@@ -66,7 +120,7 @@ const UserCard = ({ user }: { user: DefaultSession["user"] | any }) => {
           )
         }
         { showNotifications && 
-              <NotificationDropDown notifications = { notifications } markAsRead = { markAsRead } /> 
+              <NotificationDropDown notifications = { notifications } markAsRead = { markAsRead } deleteNotifications = { deleteNotifications } markAllAsRead  = { markAllAsRead } /> 
         }
       </div>
 
