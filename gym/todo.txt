@@ -1,4 +1,3 @@
-Edit for posts 
 Profile posts 
 Notifications CRUD
 

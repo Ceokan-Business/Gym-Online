@@ -9,11 +9,13 @@ import { verifyUserStatus } from '@utils/verifyUserStatus';
 import { useRouter } from 'next/navigation';
 import StopMembershipForm from '@components/Membership/StopMembershipForm';
 
+import { PopulatedUserInterface } from '@interfaces/UsetInterface';
+
 import Link from 'next/link';
 
 interface Props { 
     user: UserInterface, 
-    setUser: React.Dispatch<React.SetStateAction<UserInterface>> 
+    setUser: React.Dispatch<React.SetStateAction<PopulatedUserInterface>> 
 }
 
 interface OptionsProps { 

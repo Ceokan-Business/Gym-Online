@@ -32,9 +32,9 @@ export interface UserInterface {
     grades: string [], 
     membership: MembershipUserInterface, 
     notifications: string[] | NotificationInterface[], 
-    posts: string[] | PostInterface[], 
+    posts: PostInterface[] | string[], 
     calendar: DayInterface [], 
-    likedPosts: string | PostInterface[]; 
+    likedPosts: PostInterface[] | string; 
 }
 
 export const initialDay = { 
@@ -64,4 +64,35 @@ export const initialUser  = {
     posts: [], 
     calendar: [], 
     likedPosts: [], 
+}
+
+
+// __________________________________________________________
+
+export interface PopulatedMembershipInterface { 
+    details:  MembershipInterface | null,
+    isFrozen: Boolean, 
+    startDate: Date | null, 
+    finishDate: Date | null, 
+}
+
+export interface PopulatedOptionsInterface { 
+    trainer: string | TrainerInterface | null, 
+    isTrainer: boolean, 
+    trainerProfile: string | TrainerInterface | null,
+}
+
+export interface PopulatedUserInterface { 
+    _id: string, 
+    username: string, 
+    email: string, 
+    image: string, 
+    password?: string, 
+    trainerOptions: PopulatedOptionsInterface, 
+    grades: string [], 
+    membership: PopulatedMembershipInterface, 
+    notifications: string[] | NotificationInterface[], 
+    posts: PostInterface[], 
+    calendar: DayInterface [], 
+    likedPosts: PostInterface[] | string; 
 }

@@ -1,13 +1,12 @@
 'use client'; 
 
 import { useState, useEffect } from 'react'; 
-import { UserInterface, initialUser } from '@interfaces/UsetInterface';
-import { useSession } from 'next-auth/react';
+import { PopulatedUserInterface, initialUser } from '@interfaces/UsetInterface';
 import { usePathname, useRouter } from 'next/navigation'; 
 import Profile from '@components/Profile/Profile';
 
+
 const ProfilePage = () => {
-    const { data: session } = useSession(); 
     const router = useRouter(); 
     const pathName = usePathname(); 
 
@@ -19,7 +18,7 @@ const ProfilePage = () => {
     }
 
     const ID = extractUserId(); 
-    const [ user, setUser ] = useState <UserInterface>(initialUser); 
+    const [ user, setUser ] = useState <PopulatedUserInterface>(initialUser); 
 
     useEffect( () => { 
         const getUserData = async () => { 
@@ -44,7 +43,7 @@ const ProfilePage = () => {
             <Profile
                 user = { user }
                 setUser = { setUser }
-                membership = { user.membership.details }
+                membership = { user.membership.details || null }
             /> 
         }
     </>
