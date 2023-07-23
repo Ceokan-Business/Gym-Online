@@ -60,6 +60,7 @@ const handler = NextAuth({
                         posts: [], 
                         calendar: [], 
                         likedPosts: [], 
+                        reviews: [], 
                     }
                     
                     userObject.email = profile.email; 

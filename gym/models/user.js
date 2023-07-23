@@ -86,6 +86,10 @@ const UserSchema = new Schema({
     likedPosts: { 
         type: [Schema.Types.ObjectId], 
         ref: "Post"
+    }, 
+    reviews: { 
+        type: [Schema.Types.ObjectId], 
+        ref: "Review", 
     }
 }); 
 

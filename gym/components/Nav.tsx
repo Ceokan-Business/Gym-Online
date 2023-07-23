@@ -2,12 +2,16 @@
 
 import Link from "next/link"; 
 import { signIn, useSession } from 'next-auth/react'; 
+import { useState } from 'react'; 
+
+import ReviewDropDown from "./Review/ReviewDropDown";
 import Login from './Auth/Login';
 import AuthButton from './Auth/AuthButton';
 import { CgGym } from 'react-icons/cg'; 
 
 const NavBar = () => {
     const { data: session } = useSession(); 
+    const [ showReviewDrop, setShowReviewDrop ] = useState <boolean> (false); 
 
   return  (
     <nav className = 'bg-light-blue py-2 px-2 flex flex-row justify-between w-screen'>
@@ -19,8 +23,15 @@ const NavBar = () => {
         </Link>
 
         <div className = 'flex gap-x-16'>
-            <Link className= "default_button" href = '/memberships'>Abonamente</Link>
+            <Link className= "default_button h-full" href = '/memberships'>Abonamente</Link>
 
+            <div className = 'flex flex-col'>
+                <button className = 'default_button relative h-full' onClick = { () => setShowReviewDrop(x => !x)}> Recenzii </button>
+
+                { showReviewDrop && 
+                    <ReviewDropDown /> 
+                }
+            </div>
             { session?.user ? 
                 (
                     <Login /> 
