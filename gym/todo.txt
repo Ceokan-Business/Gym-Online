@@ -1,6 +1,3 @@
-Profile posts 
-Notifications CRUD
-
 Questions: 
 Iti poti anula singur abonamentul sau doar nu mai vii? 
 Unde te trimite dupa ce faci o actiune pe un profil? 

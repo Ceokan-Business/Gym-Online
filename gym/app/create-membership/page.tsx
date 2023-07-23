@@ -14,12 +14,13 @@ const CreateMembership = () => {
     const createMembership = async (e: React.FormEvent) => { 
         e.preventDefault(); 
         setSubmitting(true); 
+        console.log({ membership }); 
 
         try { 
             const response = await fetch("/api/create-membership", { 
                 method: "POST", 
                 mode: "cors", 
-                body: JSON.stringify({ title: membership.title, price: membership.price }), 
+                body: JSON.stringify({ title: membership.title, price: membership.price, availableSessions: membership.availableSessions}), 
                 headers: { 
                     "Content-Type": "application-json"
                 }

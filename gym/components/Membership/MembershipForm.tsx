@@ -32,12 +32,18 @@ const MembershipForm = ({ membership, setMembership, submitting, type, handleSub
                 value =  { membership.title }
                 executeChange = { (e) => { setMembership({ ...membership, title: e.target.value })}}
             /> 
-
             <NumberInputElement 
                 labelTitle = "Pret: "
                 required = { true }
                 value = { Number(membership.price) }
-                executeChange = { (e) => { setMembership({ ...membership, price: Number(e.target.value) }); console.log(typeof Number(e.target.value)) } }
+                executeChange = { (e) => { setMembership({ ...membership, price: Number(e.target.value) })} }
+            /> 
+
+            <NumberInputElement 
+                labelTitle = "Numar de sedinte: "
+                required = { true }
+                value = { Number(membership.availableSessions) }
+                executeChange = { (e) => { setMembership({ ...membership, availableSessions: Number(e.target.value) }) } }
             /> 
 
             <div className = 'flex justify-center my-2'>

@@ -8,6 +8,10 @@ const MembershipSchema = new Schema({
     price: { 
         type: Schema.Types.Number, 
         required: [true, 'Number is required']
+    }, 
+    availableSessions: { 
+        type: Schema.Types.Number, 
+        default: 0, 
     }
 }); 
 
