@@ -19,6 +19,10 @@ export const MONTHS = [ //lunile anului - folosite la profile
 	"December",
 ];
 
+export const DAYS =  [ //zilele saptamanii - folosite la calendar
+	'D', 'L', 'M', 'M', 'J', 'V', 'S' 
+]
+
 export const EMAIL_PLACEHOLDER = 'exmaple@exmaple.com'; 
 
 export const TITLE_CANCEL_MEMBERSHIP = 'Ne pare rau'; // atunci cand un membru este data afara, ii apara o notificare pe profil. Acesta este titlul notificarii 

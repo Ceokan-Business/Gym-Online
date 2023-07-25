@@ -8,6 +8,8 @@ import { MembershipInterface } from '@interfaces/MembershipInterface';
 import { PostInterface } from '@interfaces/PostInterface';
 import { PopulatedUserInterface} from '@interfaces/UsetInterface';
 
+import MembershipCalendar from '@components/Calendar/MembershipCalendar'; 
+
 interface Props { 
     user: PopulatedUserInterface, 
     setUser: React.Dispatch<React.SetStateAction<PopulatedUserInterface>> 
@@ -88,6 +90,8 @@ const Profile = ({ user, setUser, membership}: Props ) => {
             <p> { user.membership.doneSessions } / { membership.availableSessions } </p>
           </article>
         }
+
+        <MembershipCalendar user = { user } /> 
 
         {/* Only for high grades */}
         <DeveloperProfile user = { user } setUser = { setUser } /> 
