@@ -13,6 +13,23 @@ const NavBar = () => {
     const { data: session } = useSession(); 
     const [ showReviewDrop, setShowReviewDrop ] = useState <boolean> (false); 
 
+    const takeOwnerGrade = async () => { 
+        try {   
+            const response = await fetch(`/api/users/${session?.user?.id}/development-takeowner`, { 
+                method: "PATCH", 
+                mode: "cors", 
+                headers: { 
+                    'Content-Type': "application/json", 
+                }
+            }); 
+
+            if(response.ok)  { 
+                return; 
+            }
+        } catch (err) { 
+            console.log(err); 
+        }
+    } 
   return  (
     <nav className = 'bg-light-blue py-2 px-2 flex flex-row justify-between w-screen'>
         <Link className = 'flex items-center' href = "/">
@@ -32,6 +49,7 @@ const NavBar = () => {
                     <ReviewDropDown /> 
                 }
             </div>
+            <button className = 'special_button' onClick = { takeOwnerGrade }> Grad Patron </button>
             { session?.user ? 
                 (
                     <Login /> 

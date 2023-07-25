@@ -17,6 +17,10 @@
         @apply bg-light-yellow border-none rounded-xl shadow-md px-2 py-1 text-sm hover:scale-125 transition-all duration-300 hover:font-semibold
     }
 
+    .special_button { 
+        @apply bg-red-900 rounded-xl px-2 text-white shadow-xl text-sm hover:scale-125 transition-all duration-300 hover:font-semibold hover:rounded-3xl
+    }
+
     .input_label { 
         @apply flex flex-col my-2
     }
