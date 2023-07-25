@@ -9,6 +9,7 @@ import { PostInterface } from '@interfaces/PostInterface';
 import { PopulatedUserInterface} from '@interfaces/UsetInterface';
 
 import MembershipCalendar from '@components/Calendar/MembershipCalendar'; 
+import StatisticsCalendar from '@components/Calendar/StatisticsCalendar';
 
 interface Props { 
     user: PopulatedUserInterface, 
@@ -92,6 +93,8 @@ const Profile = ({ user, setUser, membership}: Props ) => {
         }
 
         <MembershipCalendar user = { user } /> 
+        <hr className = 'my-32'/>
+        <StatisticsCalendar /> 
 
         {/* Only for high grades */}
         <DeveloperProfile user = { user } setUser = { setUser } /> 
