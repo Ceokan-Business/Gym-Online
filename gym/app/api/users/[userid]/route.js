@@ -29,7 +29,8 @@ export const PATCH = async (req, { params }) => {
         if(action == "ADD_SESSION") { 
             let user = await User.findOne({ _id: params.userid }); 
             user.membership.doneSessions++; 
-
+            user.membership.sessionDates.push(new Date()); 
+            // notifications handler 
             const notification = new Notification({ 
                 title: GYM_SESSION_NOTIFICATIONS.NEW_SESSION_TITLE,
                 text: GYM_SESSION_NOTIFICATIONS.NEW_SESSION_DESCRIPTION, 

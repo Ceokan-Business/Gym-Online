@@ -14,7 +14,8 @@ export interface MembershipUserInterface {
     isFrozen: Boolean, 
     startDate: Date | null, 
     finishDate: Date | null, 
-    doneSessions: number
+    doneSessions: number, 
+    sessionDates: Date []
 }
 
 export interface TrainerOptionsInterface { 
@@ -76,7 +77,8 @@ export interface PopulatedMembershipInterface {
     isFrozen: Boolean, 
     startDate: Date | null, 
     finishDate: Date | null, 
-    doneSessions: number
+    doneSessions: number, 
+    sessionDates: Date [], 
 }
 
 export interface PopulatedOptionsInterface { 
@@ -124,6 +126,7 @@ export const populatedInitialUser  = {
         startDate: null, 
         finishDate: null, 
         doneSessions: 0, 
+        sessionDates: [], 
     }, 
     notifications: [],
     posts: [], 

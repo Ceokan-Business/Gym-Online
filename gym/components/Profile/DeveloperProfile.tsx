@@ -136,6 +136,8 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
 
         let updateUser = user; 
         updateUser.membership.doneSessions = updateUser.membership.doneSessions + 1; 
+        updateUser.membership.sessionDates.push(new Date()); 
+      
         console.log({ updateUser });
         setUser(updateUser);  
 

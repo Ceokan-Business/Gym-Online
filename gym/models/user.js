@@ -30,6 +30,9 @@ const MembershipUserSchema = new Schema({
     doneSessions: { 
         type: Schema.Types.Number, 
         default: 0, 
+    }, 
+    sessionDates: { 
+        type: [Date], 
     }
 })
 

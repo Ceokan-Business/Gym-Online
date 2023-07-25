@@ -55,6 +55,7 @@ const handler = NextAuth({
                             startDate: new Date (), 
                             finishDate: new Date () , 
                             doneSessions: 0, 
+                            sessionDates: [], 
                         }, 
                         notifications: [],
                         posts: [], 
