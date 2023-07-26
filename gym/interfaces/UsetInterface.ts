@@ -2,9 +2,10 @@ import { MembershipInterface } from "./MembershipInterface";
 import { TrainerInterface } from "./TrainerInterface";
 import { NotificationInterface } from "./NotificationInterface";
 import { PostInterface } from "./PostInterface";
+import dayjs from 'dayjs';
 
 export interface DayInterface { 
-    date: Date, 
+    date: dayjs.Dayjs | Date | null, 
     kg: number, 
     height: number, 
 }; 
@@ -40,7 +41,7 @@ export interface UserInterface {
 }
 
 export const initialDay = { 
-    date: new Date(), 
+    date: null, 
     kg: 0, 
     height: 0, 
 }
@@ -68,7 +69,6 @@ export const initialUser  = {
     calendar: [], 
     likedPosts: [], 
 }
-
 
 // __________________________________________________________
 

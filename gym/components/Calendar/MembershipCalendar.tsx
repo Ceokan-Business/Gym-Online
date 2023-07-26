@@ -29,8 +29,9 @@ const MembershipCalendar = ({ user }: Props) => {
       mongodbDate.setHours(0, 0, 0, 0);
     
       const isSameDay = frontEndFormattedDate.getTime() === mongodbDate.getTime();
-      console.log({ frontEndFormattedDate: frontEndFormattedDate.getTime(), mongodbDate: mongodbDate.getTime() }); 
-      console.log({ frontEndFormattedDate: frontEndFormattedDate, mongodbDate: mongodbDate }); 
+      // console.log({ frontEndFormattedDate: frontEndFormattedDate.getTime(), mongodbDate: mongodbDate.getTime() }); 
+      // console.log({ frontEndFormattedDate: frontEndFormattedDate, mongodbDate: mongodbDate }); 
+      // console.log({ isSameDay }); 
       return isSameDay; 
     };
 
@@ -42,6 +43,7 @@ const MembershipCalendar = ({ user }: Props) => {
       })
     })); 
 
+    console.log({ updateSessionDates }); 
     setSessionDates(updateSessionDates); 
   }, [])
 

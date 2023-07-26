@@ -1,31 +1,86 @@
 'use client'; 
 
 import { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
+import { useSession } from 'next-auth/react';
 
+import dayjs from 'dayjs';
 import { generateDate } from '@utils/calendar';
-import { conditionalClasses as cn } from '@utils/conditionalClasses';
 import { MONTHS, DAYS } from "@global/constants"; 
 
+import StatisticDateBox from './StatisticDateBox'; 
+import StatisticsData from './StatisticsData';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr'; 
 
-interface DayProps { 
-    selectedDate: string, 
-}
+//typesript special import 
+import { DayInterface, initialDay } from '@interfaces/UsetInterface';
 
-const DataOnTheDay = ({ selectedDate }: DayProps) => { 
-    return ( 
-        <div className = 'h-96 mx-4 pl-4 w-96'>
-            <p className='font-semibold'> Schedule for { selectedDate } </p>
-            <p> No meetings today </p>
-        </div>
-    )
-}
 
 const StatisticsCalendar = () => {
+  const { data: session } = useSession(); 
   const CURRENT_DATE = dayjs(); 
+
   const [ today, setToday ] = useState <dayjs.Dayjs> (CURRENT_DATE); 
   const [ selectedDate, setSelectedDate ] = useState <dayjs.Dayjs>(CURRENT_DATE); 
+  const [ selectedDateInfo, setSelectedDateInfo ] = useState <DayInterface> (initialDay); 
+
+  useEffect( () => { 
+    const getTodayData = async () => { 
+      try  {
+        const response = await fetch(`/api/users/${session?.user?.id}/calendar-data/${today}`, { 
+          method: "GET", 
+        }); 
+
+        const dataResponse = await response.json(); 
+        if(Object.values(dataResponse).length > 0){ 
+          setSelectedDateInfo(dataResponse); 
+        } else { 
+          let data = { 
+            date: CURRENT_DATE, 
+            kg: 0, 
+            height: 0, 
+          }; 
+          setSelectedDateInfo(data);  
+          console.log({ data }); 
+        }
+
+        setSelectedDate(CURRENT_DATE);
+        console.log({ dataResponse }); ; 
+
+        if(response.ok) 
+          return; 
+      } catch(err) { 
+        console.log(err); 
+      }
+    }; 
+
+    getTodayData(); 
+  }, []); 
+
+  const getSpecifiedData = async () => { 
+    try { 
+      const response = await fetch(`/api/users/${session?.user?.id}/calendar-data/${selectedDate.toDate().toDateString()}`); 
+      const dataResponse = await response.json(); 
+
+      if(Object.values(dataResponse).length > 0){ 
+        setSelectedDateInfo(dataResponse); 
+      } else { 
+        let data = { 
+          date: selectedDate, 
+          kg: 0, 
+          height: 0, 
+        }; 
+        setSelectedDateInfo(data); 
+        console.log({ data }); 
+        console.log({ selectedDate })
+      }
+    } catch(err) { 
+      console.log(err); 
+    }
+  }; 
+
+  useEffect ( () => { 
+    getSpecifiedData(); 
+  }, [selectedDate])
 
   return (
     <div className = 'flex justify-center my-16 mx-auto divide-x-2 items-center'>
@@ -50,19 +105,19 @@ const StatisticsCalendar = () => {
         <div className= 'w-full grid grid-cols-7'>
           { generateDate(today.month(), today.year()).map( ({ date, currentMonth, today }, index) => {  
             return ( 
-              <div key = { index } className = 'h-14 border-t grid place-content-center'> 
-                <p className= { cn( currentMonth ? "": "text-gray-400", today? "bg-red-600 text-white": "", 
-                  "h-10 w-10 grid place-content-center rounded-full hover:bg-black hover:text-white transition-all duraation-300 cursor-pointer", 
-                  selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white": "")}
-                  onClick = { () => { setSelectedDate(date)}}>
-                  { date.date ()}
-                </p>
-              </div>
+              <StatisticDateBox 
+                key = { index } 
+                date = { date } 
+                today = { today }
+                selectedDate = { selectedDate }
+                currentMonth = { currentMonth } 
+                setSelectedDate = { setSelectedDate } />
             )
           })}
         </div>
       </div>
-        <DataOnTheDay selectedDate = { selectedDate.toDate().toDateString() } /> 
+      <pre> { JSON.stringify(selectedDateInfo) } </pre>
+      <StatisticsData selectedDateInfo = { selectedDateInfo } /> 
     </div>
   )
 }
