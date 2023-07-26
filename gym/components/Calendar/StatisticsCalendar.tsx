@@ -116,8 +116,7 @@ const StatisticsCalendar = () => {
           })}
         </div>
       </div>
-      <pre> { JSON.stringify(selectedDateInfo) } </pre>
-      <StatisticsData selectedDateInfo = { selectedDateInfo } /> 
+      <StatisticsData setSelectedDateInfo = { setSelectedDateInfo } selectedDateInfo = { selectedDateInfo } /> 
     </div>
   )
 }
