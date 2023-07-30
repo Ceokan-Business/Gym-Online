@@ -83,8 +83,8 @@ export const DELETE = async(req, { params }) => {
 
         for(let i = 0; i < user.calendar.length; i++) { 
             console.log({ i }); 
-            if(dayjs(user.calendar[i].date).toDate() != params.dayid) { 
-                userData.push(user.calendar[i].date); 
+            if(JSON.stringify(user.calendar[i].date) != JSON.stringify(new Date(params.dayid))) { 
+                userData.push(user.calendar[i]); 
             }
         }; 
 
