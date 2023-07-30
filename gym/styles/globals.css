@@ -33,4 +33,8 @@
         @apply flex flex-col bg-light-blue shadow-md ml-10 mr-40 my-10 p-5 rounded-2xl
     }
 
+    .default_middle_section {
+        @apply inset-x-1/2 inset-y-1/2 bg-light-blue -translate-x-1/2 -translate-y-1/2 py-8
+    }
+
 }

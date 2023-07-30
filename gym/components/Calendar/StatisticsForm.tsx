@@ -12,7 +12,7 @@ interface Props {
 
 const StatisticsForm = ({ type, selectedDateInfo, setSelectedDateInfo, submitting, handleSubmit, setShowForm }: Props) => {
   return (
-    <section className = 'inset-x-1/2 inset-y-1/2 bg-light-blue -translate-x-1/2 -translate-y-1/2 py-8'>
+    <section className = 'default_middle_section'>
         <form onSubmit = { handleSubmit } className = 'form'>
             <NumberInputElement 
                 labelTitle="kg"

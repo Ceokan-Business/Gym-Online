@@ -58,7 +58,7 @@ const StatisticsCalendar = () => {
 
   const getSpecifiedData = async () => { 
     try { 
-      const response = await fetch(`/api/users/${session?.user?.id}/calendar-data/${selectedDate.toDate().toDateString()}`); 
+      const response = await fetch(`/api/users/${session?.user?.id}/calendar-data/${dayjs(selectedDate).toJSON()}`); 
       const dataResponse = await response.json(); 
 
       if(Object.values(dataResponse).length > 0){ 
@@ -80,6 +80,7 @@ const StatisticsCalendar = () => {
 
   useEffect ( () => { 
     getSpecifiedData(); 
+    console.log({ selectedDate }); 
   }, [selectedDate])
 
   return (
