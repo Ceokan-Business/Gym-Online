@@ -159,11 +159,17 @@ const DeveloperProfile = ({ user, setUser }: Props) => {
     <>
         {/* Daca se afla pe profilul lor si sunt responsabili sau patroni pot creea postari */}
         { session?.user?.id === user._id  && (user.grades.includes(GRADES[4]) || user.grades.includes(GRADES[4])) &&
-            <Link href = '/create-post' className = 'default_button'> Create Post </Link>
+          <>
+            <Link href = '/create-post' className = 'default_button'> Creeaza Postare </Link>
+            <Link href = '/developer-panel' className = 'default_button'> Pagina Developer </Link>
+          </> 
         }
 
+        <hr className = 'my-8'/>
+
+
         {/* Daca utilizatorul este responsabil sau patron ii poate seta userului gradul de membru*/}
-        {isAdmin && 
+        { isAdmin && 
           <>
            { !user.grades.includes(GRADES[1])  &&
               <button className = 'default_button' onClick = { () => { if(!user.grades.includes(GRADES[1])) { setShowMembershipOptions(true) }  }}> Seteaza Abonament </button>
