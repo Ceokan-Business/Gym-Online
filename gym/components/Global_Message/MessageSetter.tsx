@@ -9,13 +9,59 @@ interface Props {
 const MessageSetter = ({ closeMessageSetter } : Props) => {
   const [ textMessage, setTextMessage ] = useState<string> (""); 
   const [ submitting, setSubmitting ] = useState<boolean> (false); 
+  const [ messageNull, setMessageNull ] = useState<boolean> (false); 
 
-  const handleSubmit = (e: React.FormEvent) => { 
+  useEffect( () => { 
+    const getMessageData = async () => { 
+      try  {
+        const response = await fetch('/api/developer-panel'); 
+        const messageResponse = await response.json(); 
+
+        if(messageResponse === null) { 
+          setMessageNull(true); 
+          return; 
+        }
+
+        setTextMessage(messageResponse); 
+        return; 
+      } catch (err) { 
+        console.log(err); 
+      }
+    }
+
+    getMessageData(); 
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => { 
     e.preventDefault(); 
     setSubmitting(true); 
 
-    try { 
+    const makeRequest = async (action: string) => { 
+      try {  
+        const response = await fetch("/api/developer-panel", { 
+          method: action, 
+          mode: 'cors', 
+          body: JSON.stringify({ text: textMessage }), 
+          headers: { 
+            'Content-Type': "application/json"
+          }
+        }); 
 
+        if(response.ok) { 
+          closeMessageSetter(); 
+          return; 
+        }
+      } catch (err) { 
+        console.log(err); 
+      }
+    }
+
+    try { 
+      if(messageNull) { 
+        makeRequest("POST")
+      } else { 
+        makeRequest("PATCH")
+      }; 
     } catch (err) { 
       console.log(err)
     } finally { 
