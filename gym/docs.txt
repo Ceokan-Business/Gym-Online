@@ -1,4 +1,6 @@
 RO: 
 
 Exista 4 moduri in care poti accesa siteul, fiecare cu functionalitatea lui specifica: 
--
+- User: persoana ce viziteaza siteul fara a avea abonament la sala respectiva 
+- Membru: personana cu abonament 
+- Antrenor: 

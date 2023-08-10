@@ -1,12 +1,14 @@
 import PostCard from '@components/Posts/PostCard';
 import GradesList from './GradesList';
 import DeveloperProfile from './DeveloperProfile';
+import TrainerButtonProfile from './TrainerButtonProfile';
 
 import { GRADES } from '@global/constants';
 
 import { MembershipInterface } from '@interfaces/MembershipInterface';
 import { PostInterface } from '@interfaces/PostInterface';
 import { PopulatedUserInterface} from '@interfaces/UsetInterface';
+import Link from 'next/link';
 
 import MembershipCalendar from '@components/Calendar/MembershipCalendar'; 
 import StatisticsCalendar from '@components/Calendar/StatisticsCalendar';
@@ -81,6 +83,11 @@ const Profile = ({ user, setUser, membership}: Props ) => {
 
             <GradesList grades = { user.grades } /> 
         </header>
+
+        { 
+          user.grades.includes(GRADES[2]) && 
+            <TrainerButtonProfile /> 
+        }
 
         { user.grades.includes(GRADES[1]) && membership != null &&
           <article className = 'bg-light-blue mx-4 my-8 p-2 shadow-md'> {/* detalii abonament */}

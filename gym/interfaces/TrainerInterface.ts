@@ -12,6 +12,7 @@ export interface DayTrainerInterface {
 }
 
 export interface TrainerInterface { 
+    _id: string, 
    username: string, 
    description: string, 
    trainees: string [] | UserInterface [], 
@@ -19,6 +20,7 @@ export interface TrainerInterface {
 }
 
 export const initialTrainer = { 
+    _id: "", 
     username: "", 
     description: "", 
     trainees: [], 

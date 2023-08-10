@@ -1,6 +1,7 @@
 import { GRADES } from '@global/constants'; 
 import { connectToDB } from '@utils/database'; 
 import User from '@models/user'; 
+import Trainer from '@models/trainer'; 
 
 export const PATCH = async(req, { params }) => { 
     try { 
@@ -11,7 +12,18 @@ export const PATCH = async(req, { params }) => {
         if(!user.grades.includes(GRADES[2])) { 
             user.grades.push(GRADES[2]);
 
-            await user.save (); 
+            await user.save (); // push  the trainer grade to the user profile
+
+            //create the trainer in the database 
+            const trainer = new Trainer({ 
+                username: user.username, 
+                description: "", 
+                trainees: [],
+                timetable: [],
+            }); 
+
+            console.log({ trainer }); 
+            await trainer.save(); 
             return new Response("Owner grade added", { status: 200 })
         }; 
 

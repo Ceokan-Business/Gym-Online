@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from 'react'; 
 import { PopulatedUserInterface, populatedInitialUser } from '@interfaces/UsetInterface';
-import { usePathname, useRouter } from 'next/navigation'; 
+import { usePathname } from 'next/navigation'; 
 import Profile from '@components/Profile/Profile';
 
 
 const ProfilePage = () => {
-    const router = useRouter(); 
     const pathName = usePathname(); 
 
     const [ loaded, setLoaded ] = useState <boolean> (false); 

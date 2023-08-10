@@ -28,7 +28,6 @@ const TrainerSchema = new Schema({
     }, 
     description: { 
         type: String, 
-        required: [ true, "Description is required"]
     }, 
     trainees: { 
         type: [Schema.Types.ObjectId], 
