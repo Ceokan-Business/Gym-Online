@@ -17,6 +17,7 @@ export const PATCH = async(req, { params }) => {
             //create the trainer in the database 
             const trainer = new Trainer({ 
                 username: user.username, 
+                userId: params.userid, 
                 description: "", 
                 trainees: [],
                 timetable: [],

@@ -14,6 +14,7 @@ export interface DayTrainerInterface {
 export interface TrainerInterface { 
     _id: string, 
    username: string, 
+   userId: string, 
    description: string, 
    trainees: string [] | UserInterface [], 
    timetable: DayTrainerInterface[], 
@@ -22,6 +23,7 @@ export interface TrainerInterface {
 export const initialTrainer = { 
     _id: "", 
     username: "", 
+    userId: "", 
     description: "", 
     trainees: [], 
     timetable: [], 

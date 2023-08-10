@@ -1,8 +1,14 @@
-import React from 'react'
+import React from 'react'; 
+import { TrainerInterface } from '@interfaces/TrainerInterface';
 
-const TrainerProfile = () => {
+interface Props { 
+  trainer: TrainerInterface, 
+  setTrainer: React.Dispatch<React.SetStateAction<TrainerInterface>> 
+}
+
+const TrainerProfile = ({ trainer, setTrainer }: Props ) => {
   return (
-    <div>TrainerProfile</div>
+    <div>{ JSON.stringify(trainer) } </div>
   )
 }
 

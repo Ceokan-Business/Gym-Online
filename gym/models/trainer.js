@@ -26,6 +26,9 @@ const TrainerSchema = new Schema({
         type: String, 
         required: [ true, "Username is required"] 
     }, 
+    userId: { 
+        type: Schema.Types.ObjectId, 
+    }, 
     description: { 
         type: String, 
     }, 
