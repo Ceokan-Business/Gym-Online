@@ -4,7 +4,7 @@ import Trainer from '@models/trainer';
 export const GET = async (req, { params }) => { 
     try { 
         await connectToDB(); 
-        const trainer = await Trainer.findOne({ _id: params.trainerid }); 
+        const trainer = await Trainer.findOne({ userId: params.trainerid }); 
 
         console.log(  trainer); 
 
