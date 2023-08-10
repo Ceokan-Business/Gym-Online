@@ -30,6 +30,24 @@ const NavBar = () => {
             console.log(err); 
         }
     } 
+
+    const takeTrainerGrade = async () => { 
+        try { 
+            const response = await fetch(`/api/users/${session?.user?.id}/development-taketrainer`, { 
+                method: "PATCH", 
+                mode: "cors", 
+                headers: { 
+                    'Content-Type': "application/json", 
+                }
+            }); 
+
+            if(response.ok)  { 
+                return; 
+            }  
+        } catch(err) { 
+            console.log(err); 
+        }
+    }
   return  (
     <nav className = 'bg-light-blue py-2 px-2 flex flex-row justify-between w-screen'>
         <Link className = 'flex items-center' href = "/">
@@ -50,6 +68,7 @@ const NavBar = () => {
                 }
             </div>
             <button className = 'special_button' onClick = { takeOwnerGrade }> Grad Patron </button>
+            <button className = 'special_button' onClick = { takeTrainerGrade }> Grad Antrenor </button>
             { session?.user ? 
                 (
                     <Login /> 

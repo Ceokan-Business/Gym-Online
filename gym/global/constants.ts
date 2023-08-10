@@ -1,4 +1,4 @@
-export const GRADES: string [] = [ "User", "Membru", "Antrenor","Responsabil", "Patron" ] // available grades for users
+export const GRADES: string [] = [ "User", "Membru", "Antrenor", "Responsabil", "Patron" ] // available grades for users
 // User pentru cei ce nu au abonament 
 // Membru pentru cei ce au abonament 
 // Responsabil prentru cei angajati in sala 

@@ -4,7 +4,6 @@ Unde te trimite dupa ce faci o actiune pe un profil?
 Cum incardram functionalitatea de patron 
 
 TODO: 
-Setare mesaj global
 Sistem de antrenor 
 Sisteme de patron { 
     inghetare abonament x 
