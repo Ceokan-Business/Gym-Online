@@ -14,23 +14,44 @@ const MessageSetter = ({ closeMessageSetter } : Props) => {
   useEffect( () => { 
     const getMessageData = async () => { 
       try  {
-        const response = await fetch('/api/developer-panel'); 
-        const messageResponse = await response.json(); 
+        const response = await fetch('/api/global-message'); 
+        console.log({ response }); 
 
-        if(messageResponse === null) { 
+        if(response.status === 204) { 
           setMessageNull(true); 
           return; 
         }
 
+        const messageResponse = await response.json(); 
+        console.log({ messageResponse }); 
+
         setTextMessage(messageResponse); 
-        return; 
       } catch (err) { 
-        console.log(err); 
+        console.log("HERE"); 
       }
     }
 
     getMessageData(); 
   }, [])
+
+  const deleteGlobalMessage = async () => { 
+    try { 
+      const response = await fetch('/api/global-message', { 
+        method: "DELETE", 
+        mode: 'cors', 
+        headers: { 
+          'Content-Type': "application/json"
+        }
+      }); 
+
+      if(response.ok) { 
+        closeMessageSetter(); 
+        return; 
+      }
+    } catch(err) { 
+      console.log(err); 
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => { 
     e.preventDefault(); 
@@ -38,7 +59,7 @@ const MessageSetter = ({ closeMessageSetter } : Props) => {
 
     const makeRequest = async (action: string) => { 
       try {  
-        const response = await fetch("/api/developer-panel", { 
+        const response = await fetch("/api/global-message", { 
           method: action, 
           mode: 'cors', 
           body: JSON.stringify({ text: textMessage }), 
@@ -56,6 +77,7 @@ const MessageSetter = ({ closeMessageSetter } : Props) => {
       }
     }
 
+    console.log({ messageNull }); 
     try { 
       if(messageNull) { 
         makeRequest("POST")
@@ -86,7 +108,11 @@ const MessageSetter = ({ closeMessageSetter } : Props) => {
           }
         </button>
       </form>
-      <button className = 'default_button' onClick = { closeMessageSetter }> Anuleaza </button>
+
+      <div className = 'flex flex-col w-fit my-4 gap-y-2'>
+        <button className = 'submit_button' onClick = { deleteGlobalMessage } > Sterge Mesaj </button>
+        <button className = 'default_button' onClick = { closeMessageSetter }> Anuleaza </button>
+      </div>
     </section>
   )
 }

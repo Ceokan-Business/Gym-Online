@@ -16,8 +16,10 @@ const Message = () => {
     useEffect( () => { 
         const getMessageData = async () => { 
             try { 
-                const response = await fetch('/api/global_message'); 
+                const response = await fetch('/api/global-message'); 
                 const messResponse = await response.json(); 
+
+                console.log({ messResponse })
 
                 setGlobalMessage(messResponse); 
 
@@ -34,7 +36,9 @@ const Message = () => {
   return (
     <section>
         { globalMessage.text != "" && 
-            <p className = 'py-4 bg-light-yellow'> { globalMessage.text } </p>
+        <>
+            <p className = 'text-center py-4 bg-light-yellow'> { `${globalMessage}` }  </p>
+        </>
         }
     </section>
   )
