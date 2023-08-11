@@ -10,3 +10,5 @@ Sisteme de patron {
     prelungire abonament toata lumea 
     statisitici despre sala 
 }
+
+
