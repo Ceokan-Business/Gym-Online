@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { TrainerInterface } from '@interfaces/TrainerInterface';
 import { useSession } from 'next-auth/react';
 
+import Alert from '@components/Useful/Alert';
+
 interface Props { 
   trainer: TrainerInterface, 
   setTrainer: React.Dispatch<React.SetStateAction<TrainerInterface>>, 
@@ -14,8 +16,12 @@ const TrainerProfile = ({ trainer, setTrainer }: Props ) => {
   const [ showDescriptionForm, setShowDescriptionForm ] = useState <boolean> (false); 
   const [ deleteAlert, setDeleteAlert ] = useState <boolean> (false); 
 
+  const test = () => { 
+    console.log("RE")
+  }
+
   return (
-    <section>
+    <section className = 'h-screen'>
       <div>{ JSON.stringify(trainer) } </div>
       <header className = 'mx-4 my-2 bg-light-yellow p-2 shadow-md'>
           <h1 className = 'text-xl'> { trainer.username } </h1>
@@ -36,6 +42,13 @@ const TrainerProfile = ({ trainer, setTrainer }: Props ) => {
             }
           </div>
       </header>
+
+      
+      <Alert
+            description = 'Re'
+            executeFunction = { test }
+            cancelFunction = { test }
+          /> 
     </section>
   )
 }
