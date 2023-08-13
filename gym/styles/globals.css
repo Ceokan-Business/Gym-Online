@@ -33,8 +33,15 @@
         @apply flex flex-col bg-light-blue shadow-md ml-10 mr-40 my-10 p-5 rounded-2xl
     }
 
-    .default_middle_section {
+    .default_middle_section { /* wrong but used */ 
         @apply inset-x-1/2 inset-y-1/2 bg-light-blue -translate-x-1/2 -translate-y-1/2 py-8
     }
 
+    .middle_section_container { 
+        @apply fixed inset-0 flex flex-col items-center justify-center
+    }
+
+    .middle_section_content { 
+        @apply w-fit h-fit px-16 py-4 bg-light-blue rounded-xl shadow-md
+    }    
 }

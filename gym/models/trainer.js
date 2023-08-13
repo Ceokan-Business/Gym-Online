@@ -21,6 +21,25 @@ const DayTrainerSchema = new Schema({ // day schmea with how many meetings he wa
     }
 })
 
+const ContactSchema = new Schema({ 
+    facebook: { 
+        type: String, 
+        default: "" 
+    }, 
+    instagram: { 
+        type: String, 
+        default: ""
+    }, 
+    youtube: { 
+        type: String, 
+        default: ''
+    }, 
+    email: { 
+        type: String, 
+        default: ""
+    }
+})
+
 const TrainerSchema = new Schema({ 
     username: { 
         type: String, 
@@ -32,6 +51,7 @@ const TrainerSchema = new Schema({
     description: { 
         type: String, 
     }, 
+    contact: ContactSchema, 
     trainees: { 
         type: [Schema.Types.ObjectId], 
         ref: "User"

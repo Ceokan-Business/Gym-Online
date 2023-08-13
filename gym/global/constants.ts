@@ -37,3 +37,7 @@ export const GYM_SESSION_NOTIFICATIONS =  {
 	FINISHED_MEMBERSHIP_TITLE: "Final...", 
 	FINISHED_MEMBERSHIP_DESCRIPTION: "Abonamentul tau s-a terminat. Te asteptam cu drag sa il reinnoiesti.", 
 }
+
+
+// TRAINER CONSTANTS 
+export const CONTACT_WAYS = ['FACEBOOK', 'INSTAGRAM', 'YOUTUBE', 'EMAIL' ]; 

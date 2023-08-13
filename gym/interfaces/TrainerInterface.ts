@@ -11,14 +11,23 @@ export interface DayTrainerInterface {
     meetings: MeetInterface [] 
 }
 
+export interface ContactInterface { 
+    facebook: string, 
+    instagram: string, 
+    youtube: string, 
+    email: string, 
+}
+
 export interface TrainerInterface { 
     _id: string, 
    username: string, 
    userId: string, 
    description: string, 
+   contact: ContactInterface
    trainees: string [] | UserInterface [], 
    timetable: DayTrainerInterface[], 
 }
+
 
 export const initialTrainer = { 
     _id: "", 

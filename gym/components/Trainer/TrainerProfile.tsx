@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 
 import Alert from '@components/Useful/Alert';
 import DescriptionForm from './DescriptionForm';
+import ContactSection from './Contact/ContactSection';
 
 interface Props { 
   trainer: TrainerInterface, 
@@ -102,6 +103,8 @@ const TrainerProfile = ({ trainer, setTrainer }: Props ) => {
           cancelChange = { cancelSetDescription }
         /> 
       }
+
+      <ContactSection profileId = { trainer.userId.toString() } trainersContact = { trainer.contact } /> 
     </section>
   )
 }

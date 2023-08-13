@@ -19,6 +19,12 @@ export const PATCH = async(req, { params }) => {
                 username: user.username, 
                 userId: params.userid, 
                 description: "", 
+                contact: { 
+                    facebook: "", 
+                    instagram: "", 
+                    youtube: "", 
+                    email: "", 
+                }, 
                 trainees: [],
                 timetable: [],
             }); 
