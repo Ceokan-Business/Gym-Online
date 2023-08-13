@@ -4,7 +4,7 @@ import Trainer from '@models/trainer';
 export const PATCH = async(req, { params }) => { 
     try { 
         await connectToDB(); 
-        const { action, text } = await req.json(); 
+        const { action, text, social, link } = await req.json(); 
         let response = '';
 
         let trainer = await Trainer.findOne({ userId: params.trainerid }); 
@@ -12,6 +12,13 @@ export const PATCH = async(req, { params }) => {
         if(action == "DESCRIPTION") { 
             trainer.description = text; 
             response = 'Description changed.'; 
+        }
+
+        if(action == "CONTACT") { 
+            trainer.contact[`${social}`] = link; 
+
+            console.log(trainer.contact); 
+            response = `${social} changed`; 
         }
 
         await trainer.save(); 
@@ -25,7 +32,7 @@ export const PATCH = async(req, { params }) => {
 export const DELETE = async(req, { params }) => { 
     try { 
         await connectToDB(); 
-        const { action } = await req.json(); 
+        const { action, social } = await req.json(); 
         let response = ''; 
 
         console.log({ action }); 
@@ -34,8 +41,12 @@ export const DELETE = async(req, { params }) => {
 
         if(action === 'DESCRIPTION') { 
             trainer.description = ''; 
-            console.log("RE"); 
             response = 'Description removed'; 
+        }
+
+        if(action === 'CONTACT') { 
+            trainer.contact[`${social}`] = ''; 
+            response = `${social} deleted`; 
         }
 
         await trainer.save(); 
