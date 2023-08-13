@@ -1,31 +1,28 @@
 'use client'; 
 
-import { useState, useEffect } from 'react'; 
+import { useState } from 'react'; 
 import { useRouter } from 'next/navigation';
-
-import { UserInterface, initialUser } from '@interfaces/UsetInterface';
-
-import * as Realm from 'realm-web'; 
 
 const SearchBar = () => {
     const router = useRouter(); 
 
     const [ searchTerm, setSearchTerm ] = useState <string> (""); 
-    const [ searchedUser, setSearchedUser ] = useState <UserInterface> (initialUser); 
 
     const handleSubmit = async (e: React.FormEvent) => { 
         e.preventDefault(); 
 
         try { 
             const response = await fetch(`/api/search-user/${searchTerm}`); 
+            console.log(response); 
+            const userResponseId = await response.json(); 
 
-            const userResponse = await response.json(); 
-
+            console.log(userResponseId); 
+            router.push(`/users/${userResponseId.userId}`); 
         } catch(err) { 
             console.log(err); 
+        } finally { 
+            setSearchTerm(""); 
         }
-
-        router.push(`/search/${searchTerm}`)
     }
   return (
     <form className = 'flex justify-center items-center' onSubmit = { handleSubmit }>
