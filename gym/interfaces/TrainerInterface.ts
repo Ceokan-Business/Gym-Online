@@ -23,7 +23,7 @@ export interface TrainerInterface {
    username: string, 
    userId: string, 
    description: string, 
-   contact: ContactInterface
+   contact: ContactInterface,
    trainees: string [] | UserInterface [], 
    timetable: DayTrainerInterface[], 
 }
