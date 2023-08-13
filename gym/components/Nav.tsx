@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signIn, useSession } from 'next-auth/react'; 
 import { useState } from 'react'; 
 
+import SearchBar from "./SearchBar";
 import ReviewDropDown from "./Review/ReviewDropDown";
 import Login from './Auth/Login';
 import AuthButton from './Auth/AuthButton';
@@ -58,6 +59,7 @@ const NavBar = () => {
         </Link>
 
         <div className = 'flex gap-x-16'>
+            <SearchBar /> 
             <Link className= "default_button h-full" href = '/memberships'>Abonamente</Link>
 
             <div className = 'flex flex-col'>

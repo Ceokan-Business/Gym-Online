@@ -49,8 +49,8 @@ export const initialDay = {
 export const initialUser  = { 
     _id: "", 
     username: "", 
-    image: "", 
     email: "", 
+    image: "", 
     grades: [], 
     trainerOptions: { 
         trainer: null, 
@@ -63,6 +63,7 @@ export const initialUser  = {
         startDate: null, 
         finishDate: null, 
         doneSessions: 0, 
+        sessionDates: [], 
     }, 
     notifications: [],
     posts: [], 
