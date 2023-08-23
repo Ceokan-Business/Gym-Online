@@ -10,9 +10,12 @@ import Login from './Auth/Login';
 import AuthButton from './Auth/AuthButton';
 import { CgGym } from 'react-icons/cg'; 
 
+import ChatSessionUser from "./ChatComponents/ChatSessionUser";
+
 const NavBar = () => {
     const { data: session } = useSession(); 
     const [ showReviewDrop, setShowReviewDrop ] = useState <boolean> (false); 
+    const [ showUserOwnerChat, setShowUserOwnerChat ] = useState <boolean> (false); 
 
     const takeOwnerGrade = async () => { 
         try {   
@@ -49,6 +52,7 @@ const NavBar = () => {
             console.log(err); 
         }
     }
+
   return  (
     <nav className = 'bg-light-blue py-2 px-2 flex flex-row justify-between w-screen'>
         <Link className = 'flex items-center' href = "/">
@@ -68,6 +72,8 @@ const NavBar = () => {
                 { showReviewDrop && 
                     <ReviewDropDown /> 
                 }
+
+                <button className =  'default_button' onClick = { () => { setShowUserOwnerChat(x => !x )}}> Chat Support </button>
             </div>
             <button className = 'special_button' onClick = { takeOwnerGrade }> Grad Patron </button>
             <button className = 'special_button' onClick = { takeTrainerGrade }> Grad Antrenor </button>
@@ -87,6 +93,10 @@ const NavBar = () => {
                 )
             }
         </div>
+
+        { showUserOwnerChat && session?.user && 
+            <ChatSessionUser /> 
+        }
     </nav>
 )
 }

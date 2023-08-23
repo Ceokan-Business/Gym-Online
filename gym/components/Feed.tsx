@@ -5,6 +5,7 @@ import { PostInterface } from '@interfaces/PostInterface';
 import { useState, useEffect } from 'react'; 
 import { useSession } from 'next-auth/react';
 import PostCard from './Posts/PostCard';
+import UserOwnerChat from './ChatComponents/UserOwnerChat';
 
 import { verifyUserStatus } from "@utils/verifyUserStatus"; 
 
@@ -64,6 +65,8 @@ const Feed = () => {
         { !loaded && 
             <p> Loading... </p>
         }
+
+        { }
         { loaded && posts != undefined && posts.length > 0 && posts.map((post, index) => { 
             return <PostCard key = { post._id.toString() } deletePost = { deletePost } index = { index } post = { post } adminGrade = { adminGrade } /> 
         })}
