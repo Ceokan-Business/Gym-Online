@@ -2,6 +2,7 @@ import { MembershipInterface } from "./MembershipInterface";
 import { TrainerInterface } from "./TrainerInterface";
 import { NotificationInterface } from "./NotificationInterface";
 import { PostInterface } from "./PostInterface";
+import { MessageInterface } from "./MessageInterface";
 import dayjs from 'dayjs';
 
 export interface DayInterface { 
@@ -38,6 +39,7 @@ export interface UserInterface {
     posts: PostInterface[] | string[], 
     calendar: DayInterface [], 
     likedPosts: PostInterface[] | string; 
+    messages: MessageInterface[] | string []; 
 }
 
 export const initialDay = { 
@@ -69,6 +71,7 @@ export const initialUser  = {
     posts: [], 
     calendar: [], 
     likedPosts: [], 
+    messages: [], 
 }
 
 // __________________________________________________________
@@ -101,6 +104,7 @@ export interface PopulatedUserInterface {
     posts: PostInterface[], 
     calendar: DayInterface [], 
     likedPosts: PostInterface[] | string; 
+    messages: MessageInterface[] | string []; 
 }
 
 export const populatedInitialUser  = { 
@@ -133,4 +137,5 @@ export const populatedInitialUser  = {
     posts: [], 
     calendar: [], 
     likedPosts: [], 
+    messages: [], 
 }

@@ -93,6 +93,10 @@ const UserSchema = new Schema({
     reviews: { 
         type: [Schema.Types.ObjectId], 
         ref: "Review", 
+    }, 
+    messages: { 
+        type: [ Schema.Types.ObjectId], 
+        ref: "Message"
     }
 }); 
 

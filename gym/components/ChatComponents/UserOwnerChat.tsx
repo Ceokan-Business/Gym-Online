@@ -11,6 +11,9 @@ interface Props {
 const UserOwnerChat = ({ userId }: Props) => {
   const [ userMessages, setUserMessages ] = useState <MessageInterface []> ([]); 
   const [ newText, setNewText ] = useState<string> (""); 
+
+  // state pentru mesaje fara refresh 
+  
   
   useEffect( () => { 
     const getMessageData = async () => { 
