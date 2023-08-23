@@ -10,7 +10,8 @@ export interface MessageInterface {
 export const initialMessage = { 
     _id: "", 
     text: "", 
-    seen: "", 
+    seen: false, 
+    sentDate: new Date(), 
     creator: "", 
     receiver: "", 
 }
